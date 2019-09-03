@@ -19,7 +19,7 @@ class EquipamentoBO{
     if(potenciaMedia==0.0 || tensaoNominal==0.0){
       return 0.0;
     }
-    double result = (potenciaMedia/tensaoNominal);
+    double result = (tensaoNominal/potenciaMedia);
     return result;
   }
 }

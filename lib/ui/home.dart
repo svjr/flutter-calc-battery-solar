@@ -31,6 +31,34 @@ class _HomeState extends State<Home> {
   static String share_field_bat_bateria_s = "bat_bateria_s";
   static String share_field_bat_bateria_p = "bat_bateria_p";
 
+  final FocusNode  _eqPotenciaMaximaFocus = new FocusNode ();
+  final FocusNode  _eqPotenciaMediaFocus = new FocusNode ();
+  final FocusNode  _eqTensaoMaximaFocus = new FocusNode ();
+  final FocusNode  _eqTensaoNominalFocus = new FocusNode ();
+  final FocusNode  _eqTensaoMinimaFocus = new FocusNode ();
+  final FocusNode _eqCorrenteMaximaFocus = new FocusNode();
+  final FocusNode _eqCorrenteMediaFocus = new FocusNode();
+
+  final FocusNode _celTensaoNominalFocus = new FocusNode();
+  final FocusNode _celTensaoMaximaFocus = new FocusNode();
+  final FocusNode _celTensaoMinimaFocus = new FocusNode();
+  final FocusNode _celSaidaMaximaFocus = new FocusNode();
+  final FocusNode _celCapacidadeFocus = new FocusNode();
+  final FocusNode _celPotenciaFocus = new FocusNode();
+  final FocusNode _celBateriaSFocus = new FocusNode();
+  final FocusNode _celBateriaPFocus = new FocusNode();
+
+  final FocusNode _batBateriaSFocus = new FocusNode();
+  final FocusNode _batBateriaPFocus = new FocusNode();
+  final FocusNode _batTotalBateriasFocus = new FocusNode();
+  final FocusNode _batTensaoNominalFocus = new FocusNode();
+  final FocusNode _batTensaoMaximaFocus = new FocusNode();
+  final FocusNode _batTensaoMinimaFocus= new FocusNode();
+  final FocusNode _batCapacidadeFocus = new FocusNode();
+  final FocusNode _batSaidaMaximaFocus = new FocusNode();
+  final FocusNode _batPotenciaFocus = new FocusNode();
+  final FocusNode _batAutonomiaFocus = new FocusNode();
+
   final TextEditingController _eqPotenciaMaximaController = new TextEditingController();
   final TextEditingController _eqPotenciaMediaController = new TextEditingController();
   final TextEditingController _eqTensaoMaximaController = new TextEditingController();
@@ -58,6 +86,8 @@ class _HomeState extends State<Home> {
   final TextEditingController _batSaidaMaximaController = new TextEditingController();
   final TextEditingController _batPotenciaController = new TextEditingController();
   final TextEditingController _batAutonomiaController = new TextEditingController();
+
+
 
   @override
   void initState() {
@@ -102,13 +132,13 @@ class _HomeState extends State<Home> {
                           padding: EdgeInsets.only(left: 15.0, top: 10.0),
                           child: Column(
                             children: <Widget>[
-                              buildField("Potencia Máxima:", _eqPotenciaMaximaController, "(W)", true),
-                              buildField("Potência Média:", _eqPotenciaMediaController, "(W)", true),
-                              buildField("Tensão Máxima:", _eqTensaoMaximaController, "(V)", true),
-                              buildField("Tensão Nominal:", _eqTensaoNominalController, "(V)", true),
-                              buildField("Tensão Mínima:", _eqTensaoMinimaController, "(V)", true),
-                              buildField("Corrente Máxima:", _eqCorrenteMaximaController, "(A)", false),
-                              buildField("Corrente Média:", _eqCorrenteMediaController, "(A)", false),
+                              buildField("Potencia Máxima:", _eqPotenciaMaximaController, "(W)", true,_eqPotenciaMaximaFocus,_eqPotenciaMediaFocus),
+                              buildField("Potência Média:", _eqPotenciaMediaController, "(W)", true,_eqPotenciaMediaFocus,_eqTensaoMaximaFocus),
+                              buildField("Tensão Máxima:", _eqTensaoMaximaController, "(V)", true,_eqTensaoMaximaFocus,_eqTensaoNominalFocus),
+                              buildField("Tensão Nominal:", _eqTensaoNominalController, "(V)", true,_eqTensaoNominalFocus,_eqTensaoMinimaFocus),
+                              buildField("Tensão Mínima:", _eqTensaoMinimaController, "(V)", true,_eqTensaoMinimaFocus,_celTensaoNominalFocus),
+                              buildField("Corrente Máxima:", _eqCorrenteMaximaController, "(A)", false,_eqCorrenteMaximaFocus,_celTensaoNominalFocus),
+                              buildField("Corrente Média:", _eqCorrenteMediaController, "(A)", false,_eqCorrenteMediaFocus,_celTensaoNominalFocus),
                             ],
                           ),
                         )
@@ -131,14 +161,14 @@ class _HomeState extends State<Home> {
                           padding: EdgeInsets.only(left: 15.0, top: 10.0),
                           child: Column(
                             children: <Widget>[
-                              buildField("Tensão Nominal:", _celTensaoNominalController, "(v)", true),
-                              buildField("Tensão Máxima:", _celTensaoMaximaController, "(v)", true),
-                              buildField("Tensão Mínima:", _celTensaoMinimaController, "(v)", true),
-                              buildField("Saída Máxima:", _celSaidaMaximaController, "(mA)", true),
-                              buildField("Capacidade:", _celCapacidadeController, "(mAh)", true),
-                              buildField("Potência:", _celPotenciaController, "(Wh)", false),
-                              buildField("Bateria em S:", _celBateriaSController, "", false),
-                              buildField("Bateria em P:", _celBateriaPController, "", false),
+                              buildField("Tensão Nominal:", _celTensaoNominalController, "(v)", true,_celTensaoNominalFocus,_celTensaoMaximaFocus),
+                              buildField("Tensão Máxima:", _celTensaoMaximaController, "(v)", true,_celTensaoMaximaFocus,_celTensaoMinimaFocus),
+                              buildField("Tensão Mínima:", _celTensaoMinimaController, "(v)", true,_celTensaoMinimaFocus,_celSaidaMaximaFocus),
+                              buildField("Saída Máxima:", _celSaidaMaximaController, "(mA)", true,_celSaidaMaximaFocus,_celCapacidadeFocus),
+                              buildField("Capacidade:", _celCapacidadeController, "(mAh)", true,_celCapacidadeFocus,_batBateriaSFocus),
+                              buildField("Potência:", _celPotenciaController, "(Wh)", false,_celPotenciaFocus,_batBateriaSFocus),
+                              buildField("Bateria em S:", _celBateriaSController, "", false,_celPotenciaFocus,_batBateriaSFocus),
+                              buildField("Bateria em P:", _celBateriaPController, "", false,_celPotenciaFocus,_batBateriaSFocus),
                             ],
                           ),
                         )
@@ -161,16 +191,16 @@ class _HomeState extends State<Home> {
                           padding: EdgeInsets.only(left: 15.0, top: 10.0),
                           child: Column(
                             children: <Widget>[
-                              buildField("Bateria em S:", _batBateriaSController, " ", true),
-                              buildField("Bateria em P:", _batBateriaPController, " ", true),
-                              buildField("Total de Baterias:", _batTotalBateriasController, " ", false),
-                              buildField("Tensão Nominal:", _batTensaoNominalController, "(V)", false),
-                              buildField("Tensão Máxima:", _batTensaoMaximaController, "(V)", false),
-                              buildField("Tensão Mínima:", _batTensaoMinimaController, "(V)", false),
-                              buildField("Capacidade:", _batCapacidadeController, "(Ah)", false),
-                              buildField("Saída Máxima:", _batSaidaMaximaController, "(A)", false),
-                              buildField("Potência:", _batPotenciaController, "(Wh)", false),
-                              buildField("Autonomia Média:", _batAutonomiaController, "(h)", false),
+                              buildField("Bateria em S:", _batBateriaSController, " ", true,_batBateriaSFocus,_batBateriaPFocus),
+                              buildField("Bateria em P:", _batBateriaPController, " ", true,_batBateriaPFocus,_batBateriaPFocus),
+                              buildField("Total de Baterias:", _batTotalBateriasController, " ", false,_batTotalBateriasFocus,_batBateriaPFocus),
+                              buildField("Tensão Nominal:", _batTensaoNominalController, "(V)", false,_batTensaoNominalFocus,_batBateriaPFocus),
+                              buildField("Tensão Máxima:", _batTensaoMaximaController, "(V)", false,_batTensaoMaximaFocus,_batBateriaPFocus),
+                              buildField("Tensão Mínima:", _batTensaoMinimaController, "(V)", false,_batTensaoMinimaFocus,_batBateriaPFocus),
+                              buildField("Capacidade:", _batCapacidadeController, "(Ah)", false,_batCapacidadeFocus,_batBateriaPFocus),
+                              buildField("Saída Máxima:", _batSaidaMaximaController, "(A)", false,_batSaidaMaximaFocus,_batBateriaPFocus),
+                              buildField("Potência:", _batPotenciaController, "(Wh)", false,_batPotenciaFocus,_batBateriaPFocus),
+                              buildField("Autonomia Média:", _batAutonomiaController, "(h)", false,_batAutonomiaFocus,_batBateriaPFocus),
                             ],
                           ),
                         )
@@ -207,7 +237,7 @@ class _HomeState extends State<Home> {
             borderRadius: BorderRadius.only(topRight: Radius.circular(10.0), topLeft: Radius.circular(10.0))));
   }
 
-  Widget buildField(String label, TextEditingController controllerField, String unit, bool isEnabled) {
+  Widget buildField(String label, TextEditingController controllerField, String unit, bool isEnabled, FocusNode  focusField, FocusNode  focusNextField) {
     return Container(
         height: 40,
         child: Row(
@@ -225,6 +255,12 @@ class _HomeState extends State<Home> {
               width: 100,
               padding: EdgeInsets.all(5.0),
               child: TextFormField(
+                textInputAction:TextInputAction.next,
+                focusNode: focusField,
+                onFieldSubmitted: (term){
+                  focusField.unfocus();
+                  FocusScope.of(context).requestFocus(focusNextField);
+                },
                 enabled: isEnabled,
                 keyboardType: TextInputType.numberWithOptions(decimal: true, signed: false),
                 validator: (String valor) {
